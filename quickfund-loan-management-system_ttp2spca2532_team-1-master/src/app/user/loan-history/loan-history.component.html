@@ -1,0 +1,238 @@
+<div class="container-fluid min-vh-100 col-lg-9 col-lg-12 p-2 p-md-4">
+  <div class="col-lg-9 col-lg-12 d-flex align-items-center mb-4">
+    <button class="btn btn-link p-0 me-3 text-muted text-decoration-none" (click)="goBack()">
+      <i class="fas fa-arrow-left fs-5"></i>
+    </button>
+    <div>
+      <p class="text-muted mb-0 small d-none d-sm-block">Back to Dashboard</p>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="text-center py-5">
+    <div class="spinner-border text-primary spinner-lg" role="status"></div>
+    <p class="mt-2 text-muted">Loading your loan history...</p>
+  </div>
+
+  <div *ngIf="!loading" class="card shadow-sm border-0">
+    <div class="card-header bg-white border-bottom px-3 px-md-4 py-3">
+      <div class="d-flex align-items-center">
+        <i class="fas fa-history me-2 me-md-3 text-primary fs-4"></i>
+        <div>
+          <h5 class="mb-1 fw-semibold fs-6 fs-md-5">Your Loan History</h5>
+          <p class="text-muted mb-0 font-sm">Track all your loan applications and their current status</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-body bg-light border-bottom px-3 px-md-4 py-3">
+      <div class="row g-2 g-md-3">
+        <div class="col-12 col-md-8">
+          <div class="position-relative">
+            <i class="fas fa-search position-absolute text-muted start-0 top-50 translate-middle-y ms-3 z-index-1"></i>
+            <input
+              type="text"
+              class="form-control ps-5 border-1 rounded-sm"
+              placeholder="Search by loan ID or purpose..."
+              [(ngModel)]="searchTerm"
+              (ngModelChange)="filterLoans()"
+            />
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="position-relative">
+            <i class="fas fa-filter position-absolute text-muted start-0 top-50 translate-middle-y ms-3 z-index-1"></i>
+            <select class="form-select ps-5 border-1 rounded-sm" [(ngModel)]="statusFilter" (change)="filterLoans()">
+              <option value="">All Status</option>
+              <option value="active">Active</option>
+              <option value="pending">Pending</option>
+              <option value="rejected">Rejected</option>
+              <option value="closed">Closed</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-block d-md-none">
+      <div *ngFor="let loan of filteredLoans; trackBy: trackByLoanId" class="border-bottom">
+        <div class="d-flex justify-content-between align-items-center p-3 bg-white" (click)="toggleDetails(loan.id)">
+          <div class="flex-grow-1">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <span class="fw-bold text-dark">{{ loan.id }}</span>
+              <span
+                class="badge rounded-pill px-2 py-1 badge-sm"
+                [ngClass]="{
+                  'bg-success': getStatus(loan) === 'active',
+                  'bg-warning text-dark': getStatus(loan) === 'pending',
+                  'bg-danger': getStatus(loan) === 'rejected',
+                  'bg-secondary': getStatus(loan) === 'closed'
+                }"
+              >
+                {{ loan.status | titlecase }}
+              </span>
+            </div>
+            <div class="text-muted small mb-1">{{ loan.purpose }}</div>
+            <div class="fw-semibold text-primary">₹{{ loan.amount | number : "1.0-0" }}</div>
+            <div class="text-muted font-sm-2">{{ formatDate("2024-01-15") }}</div>
+          </div>
+          <button class="btn btn-outline-primary btn-sm rounded-circle ms-2 btn-icon">
+            <i class="fas font-sm-2" [ngClass]="expandedLoan === loan.id ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+          </button>
+        </div>
+
+        <div *ngIf="expandedLoan === loan.id" class="bg-light p-3 border-top">
+          <div class="mb-3">
+            <h6 class="fw-semibold mb-2 text-primary fs-6">
+              <i class="fas fa-info-circle me-1"></i>Loan Details
+            </h6>
+            <div class="row g-2">
+              <div class="col-6">
+                <small class="text-muted">Duration</small>
+                <div class="fw-semibold small">{{ loan.duration }} months</div>
+              </div>
+              <div class="col-6">
+                <small class="text-muted">Customer</small>
+                <div class="fw-semibold small">{{ currentUserName }}</div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h6 class="fw-semibold mb-2 text-primary fs-6">
+              <i class="fas fa-chart-line me-1"></i>Repayment History
+            </h6>
+            <div *ngIf="loan.repaymentHistory && loan.repaymentHistory.length > 0; else noPaymentsMobile">
+              <div class="bg-white rounded p-2 mb-2 border loan-history-scroll">
+                <div *ngFor="let payment of loan.repaymentHistory; let last = last"
+                     class="d-flex justify-content-between py-1"
+                     [class.border-bottom]="!last">
+                  <span class="text-muted font-sm-2">{{ formatDate(payment.date) }}</span>
+                  <span class="text-success fw-semibold font-sm">{{ payment.amount | number : "1.0-0" }}</span>
+                </div>
+              </div>
+              <div class="bg-success bg-opacity-10 rounded p-2 text-center">
+                <small class="text-muted">Total Repaid</small>
+                <div class="text-success fw-bold">₹{{ getTotalRepaid(loan) | number : "1.0-0" }}</div>
+              </div>
+            </div>
+            <ng-template #noPaymentsMobile>
+              <div class="text-center py-2 text-muted">
+                <i class="fas fa-receipt fa-lg mb-1 opacity-50"></i>
+                <p class="mb-0 small">No repayments yet</p>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-none d-md-block">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+          <thead class="table-light">
+            <tr>
+              <th class="fw-medium px-4 py-3 border-0">Loan ID</th>
+              <th class="fw-medium py-3 border-0">Purpose</th>
+              <th class="fw-medium py-3 border-0">Amount</th>
+              <th class="fw-medium py-3 border-0">Status</th>
+              <th class="fw-medium py-3 border-0">Date</th>
+              <th class="fw-medium py-3 text-center border-0">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let loan of filteredLoans; trackBy: trackByLoanId">
+              <tr class="border-bottom">
+                <td class="px-4 py-3 fw-medium text-dark">{{ loan.id }}</td>
+                <td class="py-3">{{ loan.purpose }}</td>
+                <td class="py-3 fw-medium">₹{{ loan.amount | number : "1.0-0" }}</td>
+                <td class="py-3">
+                  <span
+                    class="badge rounded-pill px-3 py-1"
+                    [ngClass]="{
+                      'bg-success': getStatus(loan) === 'active',
+                      'bg-warning text-dark': getStatus(loan) === 'pending',
+                      'bg-danger': getStatus(loan) === 'rejected',
+                      'bg-secondary': getStatus(loan) === 'closed'
+                    }"
+                  >
+                    {{ loan.status | titlecase }}
+                  </span>
+                </td>
+                <td class="py-3">{{ formatDate("2024-01-15") }}</td>
+                <td class="py-3 text-center">
+                  <button
+                    class="btn btn-outline-primary btn-sm rounded-circle btn-icon"
+                    (click)="toggleDetails(loan.id)"
+                  >
+                    <i class="fas fa-sm" [ngClass]="expandedLoan === loan.id ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+                  </button>
+                </td>
+              </tr>
+
+              <tr *ngIf="expandedLoan === loan.id">
+                <td colspan="6" class="p-0 border-0">
+                  <div class="bg-light">
+                    <div class="row g-0">
+                      <div class="col-md-6 border-end border-light">
+                        <div class="p-4">
+                          <h6 class="fw-medium mb-3">Loan Details</h6>
+                          <div class="row g-3">
+                            <div class="col-6">
+                              <small class="text-muted d-block">Duration:</small>
+                              <span class="fw-medium">{{ loan.duration }} months</span>
+                            </div>
+                            <div class="col-6">
+                              <small class="text-muted d-block">Customer:</small>
+                              <span class="fw-light">{{ currentUserName }}</span>
+                            </div>
+                            <div class="col-6">
+                              <small class="text-muted d-block">Applied:</small>
+                              <span class="fw-light">{{ formatDate("2024-01-15") }}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="p-4">
+                          <h6 class="fw-medium mb-3">Repayment History</h6>
+                          <div *ngIf="loan.repaymentHistory && loan.repaymentHistory.length > 0; else noPaymentsDesktop">
+                            <div class="mb-3 bg-white rounded p-3 border loan-history-scroll">
+                              <div *ngFor="let payment of loan.repaymentHistory; let last = last"
+                                   class="d-flex justify-content-between align-items-center py-2"
+                                   [class.border-bottom]="!last">
+                                <span class="text-muted small">{{ formatDate(payment.date) }}</span>
+                                <span class="text-success fw-semibold">₹{{ payment.amount | number : "1.0-0" }}</span>
+                              </div>
+                            </div>
+                            <div class="bg-white rounded p-3 border">
+                              <div class="d-flex justify-content-between align-items-center">
+                                <span class="fw-semibold text-success">Total Repaid:</span>
+                                <span class="fw-bold text-success">₹{{ getTotalRepaid(loan) | number : "1.0-0" }}</span>
+                              </div>
+                            </div>
+                          </div>
+                          <ng-template #noPaymentsDesktop>
+                            <div class="text-center py-4 text-muted">
+                              <i class="fas fa-receipt fa-2x mb-2 opacity-50"></i>
+                              <p class="mb-0">No repayments yet</p>
+                            </div>
+                          </ng-template>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div *ngIf="filteredLoans.length === 0" class="text-center py-5">
+      <i class="fas fa-search fa-3x text-muted mb-3 opacity-50"></i>
+      <h5 class="text-muted">No loans found</h5>
+      <p class="text-muted mb-0">Try adjusting your search or filter criteria</p>
+    </div>
+  </div>
+</div>

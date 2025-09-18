@@ -1,0 +1,143 @@
+*{
+  font-size: 13px !important;
+}
+
+.card {
+  border-radius: 12px;
+  transition: 0.3s;
+}
+.card:hover {
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1) !important;
+}
+
+.btn-link {
+  transition: 0.3s;
+}
+.btn-link:hover {
+  transform: translateX(-2px);
+  color: #495057 !important;
+}
+
+.table-hover tbody tr {
+  transition: 0.3s;
+}
+.table-hover tbody tr:hover {
+  background: rgba(13, 110, 253, 0.05);
+  transform: translateY(-1px);
+}
+
+/* Badges */
+.badge {
+  font-size: 0.75rem;
+  border-radius: 25px;
+  text-transform: capitalize;
+  padding: 0.5em 1em;
+  font-weight: 500;
+}
+
+/* Stats cards hover */
+.stats-card {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none !important;
+}
+.stats-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Stats cards backgrounds */
+.pending-card {
+  border-left: 4px solid #f59e0b !important;
+  background: linear-gradient(135deg, #fffbeb, #fef3c7);
+}
+.approved-card {
+  border-left: 4px solid #10b981 !important;
+  background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+}
+.rejected-card {
+  border-left: 4px solid #ef4444 !important;
+  background: linear-gradient(135deg, #fef2f2, #fecaca);
+}
+.active-card {
+  border-left: 4px solid #3b82f6 !important;
+  background: linear-gradient(135deg, #eff6ff, #dbeafe);
+}
+
+/* Button styling */
+.btn-group .btn {
+  transition: all 0.3s ease;
+  border: none;
+  font-weight: 500;
+  border-radius: 6px !important;
+}
+
+.btn-group .btn:first-child {
+  margin-right: 0.25rem;
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+}
+
+.btn-success:hover {
+  background: linear-gradient(135deg, #059669, #047857);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+}
+
+.btn-danger:hover {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+}
+
+/* Input styling */
+.form-control {
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.25);
+}
+
+.form-select {
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  transition: all 0.3s ease;
+}
+
+.form-select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.25);
+}
+
+/* Input group styling */
+.input-group-text {
+  border: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+}
+
+/* Small screens */
+@media (max-width: 768px) {
+  .btn-group {
+    flex-direction: column;
+  }
+  
+  .stats-card h3 {
+    font-size: 1.5rem;
+  }
+  
+  .card-body {
+    padding: 1rem !important;
+  }
+}

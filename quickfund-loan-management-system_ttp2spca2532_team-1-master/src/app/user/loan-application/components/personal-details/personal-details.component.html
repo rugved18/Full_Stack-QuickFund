@@ -1,0 +1,256 @@
+<div class="animate-fade-in-up">
+  <h5 class="mb-2 d-flex align-items-center">
+    <i class="bi bi-person-fill text-primary me-2"></i>
+    Personal Details
+  </h5>
+
+  <form [formGroup]="personalForm" (ngSubmit)="onSubmit()">
+    <!-- Basic Information -->
+    <div class="card mb-4">
+      <div class="card-header ">
+        <h6 class="mb-0">Basic Information</h6>
+      </div>
+      <div class="card-body">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">First Name *</label>
+            <input type="text" class="form-control" formControlName="firstName"
+              [class.is-invalid]="isFieldInvalid('firstName')">
+            <div class="invalid-feedback">{{ getFieldError('firstName') }}</div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Last Name *</label>
+            <input type="text" class="form-control" formControlName="lastName"
+              [class.is-invalid]="isFieldInvalid('lastName')">
+            <div class="invalid-feedback">{{ getFieldError('lastName') }}</div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Email Address *</label>
+            <input type="email" class="form-control" formControlName="email"
+              [class.is-invalid]="isFieldInvalid('email')">
+            <div class="invalid-feedback">{{ getFieldError('email') }}</div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Phone Number *</label>
+            <div class="input-group">
+              <span class="input-group-text" style="font-size: 10px;">+91</span>
+              <input type="tel" class="form-control" formControlName="phone" placeholder="9876543210"
+                [class.is-invalid]="isFieldInvalid('phone')">
+              <div class="invalid-feedback">{{ getFieldError('phone') }}</div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Date of Birth *</label>
+            <input type="date" class="form-control" formControlName="dateOfBirth"
+              [class.is-invalid]="isFieldInvalid('dateOfBirth')">
+            <div class="invalid-feedback">{{ getFieldError('dateOfBirth') }}</div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Aadhaar Number *</label>
+            <input type="text" class="form-control" formControlName="aadharNumber" placeholder="123456789012"
+              maxlength="12" [class.is-invalid]="isFieldInvalid('aadharNumber')">
+            <div class="invalid-feedback">{{ getFieldError('aadharNumber') }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Address Information -->
+    <div class="card mb-4" formGroupName="address">
+      <div class="card-header ">
+        <h6 class="mb-0">Address Information</h6>
+      </div>
+      <div class="card-body">
+        <div class="row g-3">
+          <div class="col-12">
+            <label class="form-label">Street Address *</label>
+            <textarea class="form-control" formControlName="street" rows="2"
+              [class.is-invalid]="isFieldInvalid('address.street')"></textarea>
+            <div class="invalid-feedback">{{ getFieldError('address.street') }}</div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">City *</label>
+            <input type="text" class="form-control" formControlName="city"
+              [class.is-invalid]="isFieldInvalid('address.city')">
+            <div class="invalid-feedback">{{ getFieldError('address.city') }}</div>
+          </div>
+
+          <div class="col-md-3">
+            <label class="form-label">State *</label>
+            <select class="form-select" formControlName="state" [class.is-invalid]="isFieldInvalid('address.state')">
+              <option value="">Select State</option>
+              <option *ngFor="let state of indianStates" [value]="state">{{ state }}</option>
+            </select>
+            <div class="invalid-feedback">{{ getFieldError('address.state') }}</div>
+          </div>
+
+          <div class="col-md-3">
+            <label class="form-label">PIN Code *</label>
+            <input type="text" class="form-control" formControlName="pinCode" placeholder="400001" maxlength="6"
+              [class.is-invalid]="isFieldInvalid('address.pinCode')">
+            <div class="invalid-feedback">{{ getFieldError('address.pinCode') }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Occupation Information -->
+    <div class="card mb-4">
+      <div class="card-header ">
+        <h6 class="mb-0">Occupation Information</h6>
+      </div>
+      <div class="card-body">
+        <div class="row g-3">
+          <div class="col-12">
+            <label class="form-label">Occupation Type *</label>
+            <div class="row g-2">
+              <div class="col-md-4" *ngFor="let type of occupationTypes">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" [value]="type.value" formControlName="occupationType"
+                    [id]="'occupation-' + type.value">
+                  <label class="form-check-label" [for]="'occupation-' + type.value">
+                    <i [ngClass]="getOccupationIcon(type.value)" class="me-2"></i>
+                    {{ type.label }}
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Employment Details -->
+        <div *ngIf="currentOccupationType === 'employed'" formGroupName="employment" class="mt-4">
+          <h6 class="text-primary mb-3">Employment Details</h6>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Employer Name *</label>
+              <input type="text" class="form-control" formControlName="employer"
+                [class.is-invalid]="isFieldInvalid('employment.employer')">
+              <div class="invalid-feedback">{{ getFieldError('employment.employer') }}</div>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Job Title *</label>
+              <input type="text" class="form-control" formControlName="jobTitle"
+                [class.is-invalid]="isFieldInvalid('employment.jobTitle')">
+              <div class="invalid-feedback">{{ getFieldError('employment.jobTitle') }}</div>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Annual Income (₹) *</label>
+              <input type="number" class="form-control" formControlName="annualIncome" placeholder="500000"
+                [class.is-invalid]="isFieldInvalid('employment.annualIncome')">
+              <div class="invalid-feedback">{{ getFieldError('employment.annualIncome') }}</div>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Employment Type *</label>
+              <select class="form-select" formControlName="employmentType"
+                [class.is-invalid]="isFieldInvalid('employment.employmentType')">
+                <option *ngFor="let type of employmentTypes" [value]="type.value">
+                  {{ type.label }}
+                </option>
+              </select>
+              <div class="invalid-feedback">{{ getFieldError('employment.employmentType') }}</div>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Years of Employment *</label>
+              <input type="number" class="form-control" formControlName="yearsEmployed" placeholder="2.5" step="0.1"
+                [class.is-invalid]="isFieldInvalid('employment.yearsEmployed')">
+              <div class="invalid-feedback">{{ getFieldError('employment.yearsEmployed') }}</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Student Details -->
+        <div *ngIf="currentOccupationType === 'student'" formGroupName="education" class="mt-4">
+          <h6 class="text-primary mb-3">Education Details</h6>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Institution Name *</label>
+              <input type="text" class="form-control" formControlName="institution"
+                [class.is-invalid]="isFieldInvalid('education.institution')">
+              <div class="invalid-feedback">{{ getFieldError('education.institution') }}</div>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Degree/Course *</label>
+              <input type="text" class="form-control" formControlName="degree"
+                [class.is-invalid]="isFieldInvalid('education.degree')">
+              <div class="invalid-feedback">{{ getFieldError('education.degree') }}</div>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Field of Study *</label>
+              <input type="text" class="form-control" formControlName="fieldOfStudy"
+                [class.is-invalid]="isFieldInvalid('education.fieldOfStudy')">
+              <div class="invalid-feedback">{{ getFieldError('education.fieldOfStudy') }}</div>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Current Year of Study *</label>
+              <select class="form-select" formControlName="yearOfStudy"
+                [class.is-invalid]="isFieldInvalid('education.yearOfStudy')">
+                <option value="">Select Year</option>
+                <option value="1">First Year</option>
+                <option value="2">Second Year</option>
+                <option value="3">Third Year</option>
+                <option value="4">Fourth Year</option>
+                <option value="5">Fifth Year</option>
+              </select>
+              <div class="invalid-feedback">{{ getFieldError('education.yearOfStudy') }}</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Other Occupation Details -->
+        <div *ngIf="currentOccupationType === 'other'" formGroupName="otherOccupation" class="mt-4">
+          <h6 class="text-primary mb-3">Other Occupation Details</h6>
+          <div class="row g-3">
+            <div class="col-12">
+              <label class="form-label">Occupation Description *</label>
+              <textarea class="form-control" formControlName="occupationDescription" rows="2"
+                [class.is-invalid]="isFieldInvalid('otherOccupation.occupationDescription')"></textarea>
+              <div class="invalid-feedback">{{ getFieldError('otherOccupation.occupationDescription') }}</div>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Source of Income *</label>
+              <input type="text" class="form-control" formControlName="sourceOfIncome"
+                [class.is-invalid]="isFieldInvalid('otherOccupation.sourceOfIncome')">
+              <div class="invalid-feedback">{{ getFieldError('otherOccupation.sourceOfIncome') }}</div>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Monthly Income (₹) *</label>
+              <input type="number" class="form-control" formControlName="monthlyIncome" placeholder="50000"
+                [class.is-invalid]="isFieldInvalid('otherOccupation.monthlyIncome')">
+              <div class="invalid-feedback">{{ getFieldError('otherOccupation.monthlyIncome') }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p class="text-danger" style="font-size: 12px;">
+        "Fill in all the fields marked with * to proceed."
+      </p>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="d-flex justify-content-end">
+      <button type="submit" class="btn btn-bg-primary text-white btn-md" [disabled]="personalForm.invalid">
+        <i class="bi bi-arrow-right me-2"></i>
+        Continue to Loan Details
+      </button>
+    </div>
+  </form>
+</div>

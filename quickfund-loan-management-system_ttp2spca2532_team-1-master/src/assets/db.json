@@ -1,0 +1,305 @@
+{
+  "users": [
+    {
+      "id": "ec45",
+      "name": "Chethan Y G",
+      "email": "chethan@example.com",
+      "phone": "9876543210",
+      "password": "ChethanYG",
+      "role": "user",
+      "details": {
+        "monthlyIncome": 40000,
+        "employmentStatus": "Full-Time",
+        "creditScore": 750,
+        "dateJoined": "2024-01-10",
+        "address": "Bangalore, Karnataka",
+        "dob": "2000-05-10",
+        "aadharNumber": "123412341234",
+        "occupation": "Software Engineer"
+      }
+    },
+    {
+      "id": "r66t",
+      "name": "Arpitha M",
+      "email": "arpitha@example.com",
+      "phone": "9876543211",
+      "password": "hashedpassword2",
+      "role": "user",
+      "details": {
+        "monthlyIncome": 35000,
+        "employmentStatus": "Self-Employed",
+        "creditScore": 720,
+        "dateJoined": "2024-02-12",
+        "address": "Mysore, Karnataka",
+        "dob": "1999-11-15",
+        "aadharNumber": "234523452345",
+        "occupation": "Freelancer"
+      }
+    },
+    {
+      "id": "a8n6",
+      "name": "Vivek Sharma",
+      "email": "vivek@example.com",
+      "phone": "9876543212",
+      "password": "hashedpassword3",
+      "role": "user",
+      "details": {
+        "monthlyIncome": 50000,
+        "employmentStatus": "Full-Time",
+        "creditScore": 780,
+        "dateJoined": "2024-03-15",
+        "address": "Hubli, Karnataka",
+        "dob": "1998-09-20",
+        "aadharNumber": "345634563456",
+        "occupation": "Manager"
+      }
+    },
+    {
+      "id": "d55h",
+      "name": "Rugved Kulkarni",
+      "email": "kulkarni@example.com",
+      "phone": "9876543213",
+      "password": "hashedpassword4",
+      "role": "user",
+      "details": {
+        "monthlyIncome": 42000,
+        "employmentStatus": "Unemployed",
+        "creditScore": 690,
+        "dateJoined": "2024-04-18",
+        "address": "Hassan, Karnataka",
+        "dob": "1997-07-30",
+        "aadharNumber": "456745674567",
+        "occupation": "Job Seeker"
+      }
+    },
+    {
+      "id": "fbcb",
+      "name": "Arpit Tripathi",
+      "email": "arpit@example.com",
+      "phone": "9452273266",
+      "password": "Hello123!",
+      "role": "user",
+      "details": {
+        "monthlyIncome": 70000,
+        "employmentStatus": "Employed",
+        "creditScore": 680,
+        "dateJoined": "2024-04-18",
+        "address": "Lucknow, Uttar Pradesh",
+        "dob": "1999-02-30",
+        "aadharNumber": "456745674567",
+        "occupation": "Software Engineer"
+      }
+    },
+    {
+      "id": "33r4",
+      "name": "Admin",
+      "email": "admin@quickfund.com",
+      "phone": "9696969696",
+      "password": "Admin123",
+      "role": "admin",
+      "details": {
+        "monthlyIncome": 0,
+        "employmentStatus": "",
+        "creditScore": 0,
+        "dateJoined": "",
+        "address": "",
+        "dob": "",
+        "aadharNumber": "",
+        "occupation": ""
+      }
+    }
+  ],
+  "loans": [
+    {
+      "id": "101",
+      "userId": "ec45",
+      "amount": 150000,
+      "purpose": "Bike Purchase",
+      "duration": 12,
+      "status": "Active"
+    },
+    {
+      "id": "102",
+      "userId": "ec45",
+      "amount": 50000,
+      "purpose": "Medical",
+      "duration": 6,
+      "status": "Closed"
+    },
+    {
+      "id": "103",
+      "userId": "r66t",
+      "amount": 100000,
+      "purpose": "Business",
+      "duration": 10,
+      "status": "Active"
+    },
+    {
+      "id": "104",
+      "userId": "r66t",
+      "amount": 200000,
+      "purpose": "Home Renovation",
+      "duration": 18,
+      "status": "Active"
+    },
+    {
+      "id": "105",
+      "userId": "d55h",
+      "amount": 80000,
+      "purpose": "Education",
+      "duration": 8,
+      "status": "Active"
+    }
+  ],
+  "repayments": [
+    {
+      "id": "1001",
+      "loanId": 101,
+      "amount": 10000,
+      "date": "2025-06-01"
+    },
+    {
+      "id": "1002",
+      "loanId": 101,
+      "amount": 12000,
+      "date": "2025-07-01"
+    },
+    {
+      "id": "1003",
+      "loanId": 102,
+      "amount": 5000,
+      "date": "2024-09-10"
+    },
+    {
+      "id": "1004",
+      "loanId": 103,
+      "amount": 8500,
+      "date": "2025-06-05"
+    },
+    {
+      "id": "1005",
+      "loanId": 103,
+      "amount": 9200,
+      "date": "2025-07-05"
+    },
+    {
+      "id": "1006",
+      "loanId": 104,
+      "amount": 11000,
+      "date": "2025-06-10"
+    },
+    {
+      "id": "1007",
+      "loanId": 104,
+      "amount": 11500,
+      "date": "2025-07-10"
+    },
+    {
+      "id": "1008",
+      "loanId": 105,
+      "amount": 7000,
+      "date": "2025-06-15"
+    },
+    {
+      "id": "1009",
+      "loanId": 105,
+      "amount": 7500,
+      "date": "2025-07-15"
+    },
+    {
+      "id": "1756352868364",
+      "loanId": "105",
+      "amount": 10000,
+      "date": "2025-08-28"
+    },
+    {
+      "id": "1757224697192",
+      "loanId": "105",
+      "amount": 5000,
+      "date": "2025-09-07"
+    }
+  ],
+  "features": [
+    {
+      "icon": "bi bi-currency-dollar",
+      "title": "Smart Loan Management",
+      "description": "AI-powered loan processing with instant approvals and competitive rates tailored to your needs.",
+      "id": "7dfd"
+    },
+    {
+      "icon": "bi bi-graph-up-arrow",
+      "title": "Real-time Analytics",
+      "description": "Track your financial progress with comprehensive dashboards and detailed repayment insights.",
+      "id": "615c"
+    },
+    {
+      "icon": "bi bi-shield-check",
+      "title": "Bank-level Security",
+      "description": "Your data is protected with enterprise-grade encryption and multi-factor authentication.",
+      "id": "c896"
+    },
+    {
+      "icon": "bi bi-clock",
+      "title": "24/7 Processing",
+      "description": "Apply and manage loans anytime with our automated systems working around the clock.",
+      "id": "2379"
+    },
+    {
+      "icon": "bi bi-people",
+      "title": "Expert Support",
+      "description": "Get personalized assistance from our team of financial experts whenever you need help.",
+      "id": "2cf3"
+    },
+    {
+      "icon": "bi bi-bar-chart",
+      "title": "Financial Insights",
+      "description": "Make informed decisions with detailed reports and credit score monitoring tools.",
+      "id": "2fd9"
+    }
+  ],
+  "testimonials": [
+    {
+      "name": "Sarah Johnson",
+      "role": "Small Business Owner",
+      "content": "QuickFund helped me expand my business with a seamless loan process. Got approved in just 24 hours!",
+      "rating": 5,
+      "id": "98ef"
+    },
+    {
+      "name": "Michael Chen",
+      "role": "Homeowner",
+      "content": "The platform is incredibly user-friendly. Managing my home renovation loan has never been easier.",
+      "rating": 5,
+      "id": "7b01"
+    },
+    {
+      "name": "Emily Rodriguez",
+      "role": "Entrepreneur",
+      "content": "Best rates in the market and transparent terms. QuickFund is my go-to for all financing needs.",
+      "rating": 5,
+      "id": "07f7"
+    }
+  ],
+  "stats": [
+    {
+      "value": "$2.5B+",
+      "label": "Loans Processed",
+      "id": "392e"
+    },
+    {
+      "value": "50k+",
+      "label": "Happy Customers",
+      "id": "950a"
+    },
+    {
+      "value": "24h",
+      "label": "Average Approval",
+      "id": "50ee"
+    },
+    {
+      "value": "4.9/5",
+      "label": "Customer Rating",
+      "id": "07da"
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+.file-upload-area {
+  border: 2px dashed #ccc;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.file-upload-area:hover {
+  border-color: #667eea;
+  background-color: rgba(102, 126, 234, 0.05);
+}
+
+.file-upload-area.dragover {
+  border-color: #667eea;
+  background-color: rgba(102, 126, 234, 0.1);
+}
+
+.btn-gradient {
+  background: linear-gradient( to right, #69c0ff, #73e0a9);
+  color: white;
+  font-weight: 600;
+  border: none;
+  transition: 0.3s ease-in-out;
+}
+
+.btn-gradient:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  color: white;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-header{
+  background: var(--soft-gradient);
+}
+
+.row,
+select,
+input::placeholder {
+  font-size: 10px;
+}
+
+input::placeholder,
+select{
+  color: #868383;
+}
+
+input,
+input:focus,
+select {
+  background-color: #f1efef;
+  color: #868383;
+  border: none;
+  outline: none;
+}
+
+label,select {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+textarea,input{
+  font-size: 12px;
+}

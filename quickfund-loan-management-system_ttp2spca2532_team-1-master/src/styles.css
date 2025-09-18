@@ -1,0 +1,49 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
+:root {
+  --primary-color: #0051ff;
+  --secondary-color: #02b46a;
+   --orange: #f97316;
+  --primary-gradient: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+  --multi-color-gradient: linear-gradient(to right, #2563eb, #9f28f9, #16a34a);
+  --soft-gradient: linear-gradient(to right, #f0f8ff, #d0f0e8);
+  --font-family: 'Inter', sans-serif;
+}
+
+body {
+  font-family: var(--font-family);
+}
+
+.qf-logo {
+  background: var(--primary-gradient);
+  color: white;
+  font-weight: 600;
+  border-radius: 35%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.btn-bg-primary {
+  background: var(--primary-gradient);
+  color: white;
+}
+
+.btn-bg-secondary:hover{
+  background: var(--soft-gradient);
+}
+
+.text-bg-primary{
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -1,0 +1,54 @@
+/* Minimal design tweaks */
+body {
+  font-family: 'Inter', sans-serif;
+}
+.gradient{
+    background:var(--primary-gradient);
+    color: white;
+    
+}
+
+.gradient-btn {
+  background: linear-gradient(to right, #69c0ff, #73e0a9);
+  color: white;
+  font-weight: 600;
+  border: none;
+  transition: 0.3s ease-in-out;
+}
+
+.row,
+input,
+.form-select,
+.form-select option {
+  font-size: 12px;
+}
+
+input::placeholder{
+  color: #868383;
+}
+
+input,
+input:focus,
+.custom-icon,
+.form-select,
+.form-select:focus {
+  background-color: #f1efef;
+  color: #868383;
+  border: none;
+  outline: none;
+}
+
+.back-link {
+  font-size: 0.5rem;
+}
+
+.small-icon {
+  font-size: 1rem;
+}
+
+.info-icon {
+  font-size: 2.4rem;
+}
+
+
+

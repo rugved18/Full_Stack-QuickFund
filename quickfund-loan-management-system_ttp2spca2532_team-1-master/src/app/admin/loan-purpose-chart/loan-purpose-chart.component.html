@@ -1,0 +1,38 @@
+<div class="container mt-4 px-0">
+  <div class="row g-4">
+    <div class="col-12 col-lg-6">
+      <div class="card shadow-sm">
+        <div class="card-header bg-light">
+          <h6 class="mb-0">Loan Distribution by Purpose</h6>
+          <small class="text-muted">Breakdown of loan applications by purpose</small>
+        </div>
+        <div class="card-body" style="max-width: 250px; margin: auto;">
+          <canvas *ngIf="isBrowser"
+                  baseChart
+                  [data]="pieChartData"
+                  [options]="pieChartOptions"
+                  type="pie"
+                  [plugins]="pieChartPlugins">
+          </canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-lg-6">
+      <div class="card shadow-sm">
+        <div class="card-header bg-light">
+          <h6 class="mb-0">Monthly Repayment Trend</h6>
+          <small class="text-muted">Revenue generated from loans over time</small>
+        </div>
+        <div class="card-body" style="min-height: 250px;">
+          <canvas *ngIf="isBrowser"
+                  baseChart
+                  [data]="lineChartData"
+                  [options]="lineChartOptions"
+                  type="line">
+          </canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

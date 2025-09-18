@@ -1,0 +1,28 @@
+.nav-item {
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 3px;
+  transition: border-color 0.5s;
+}
+
+.nav-item:hover {
+  background-color: rgba(0, 166, 255, 0.116);
+}
+
+.navbar-nav .nav-link {
+  color: #000000 !important; 
+  opacity: 1 !important; 
+}
+
+body {
+  padding-top: 70px;
+}
+
+.pro{
+  background: linear-gradient(to bottom right, #7aaedc, #66eacb);
+}
+@media (max-width: 991.98px) {
+  body {
+    padding-top: 56px;
+  }
+}

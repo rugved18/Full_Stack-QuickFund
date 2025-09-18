@@ -1,0 +1,32 @@
+.transition {
+  transition: all 0.2s ease-in-out;
+}
+*{
+  font-size: 14px !important;
+}
+.transition:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1) !important;
+}
+
+.loan-card {
+  border-left: 4px solid #0d6efd;
+  transition: border-left-color 0.3s ease;
+}
+.loan-card:hover {
+  border-left-color: #198754;
+}
+
+.user-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0 auto;
+}

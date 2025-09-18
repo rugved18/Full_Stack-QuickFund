@@ -1,0 +1,253 @@
+<div class="container-fluid p-4" style="min-height: 100vh">
+  <!-- Header -->
+  <div class="row mb-2">
+    <div class="col-12">
+      <div class="d-flex align-items-center mb-1">
+        <button
+          class="btn btn-link p-0 text-decoration-none me-3"
+          (click)="goBack()"
+        >
+          <i class="fas fa-arrow-left"></i> Back to Dashboard
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content Card -->
+  <div class="card border-0 shadow-sm">
+    <div class="card-body p-4">
+      <!-- Section Header -->
+      <div class="d-flex align-items-center justify-content-between mb-2">
+        <div class="d-flex align-items-center">
+          <i class="fas fa-clipboard-list me-2 text-primary"></i>
+          <h4 class="mb-0 fw-bold">Loan Applications</h4>
+        </div>
+        <!-- Export Buttons -->
+        <div class="btn-group" role="group">
+          <button
+            type="button"
+            class="btn btn-outline-success btn-sm"
+            (click)="exportToExcel()"
+          >
+            <i class="fas fa-file-excel me-1"></i>
+            Export Excel
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-danger btn-sm"
+            (click)="exportToPDF()"
+          >
+            <i class="fas fa-file-pdf me-1"></i>
+            Export PDF
+          </button>
+        </div>
+      </div>
+      <p class="text-muted mb-2">
+        Review loan applications and make approval decisions
+      </p>
+
+      <!-- Search and Filter Row -->
+      <div class="row mb-4">
+        <div class="col-md-8">
+          <div class="input-group">
+            <span class="input-group-text bg-light border-end-0">
+              <i class="fas fa-search text-muted"></i>
+            </span>
+            <input
+              type="text"
+              class="form-control border-start-0"
+              placeholder="Search by customer name, loan ID, or purpose..."
+              [(ngModel)]="searchTerm"
+              (ngModelChange)="onSearchChange()"
+            />
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="input-group">
+            <span class="input-group-text bg-light">
+              <i class="fas fa-filter text-muted"></i>
+            </span>
+            <select
+              class="form-select"
+              [(ngModel)]="statusFilter"
+              (change)="onStatusFilterChange()"
+            >
+              <option value="">All Status</option>
+              <option value="pending">Pending Review</option>
+              <option value="closed">Closed</option>
+              <option value="rejected">Rejected</option>
+              <option value="active">Active</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Applications Table -->
+    <!-- Applications Table -->
+<div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
+  <table class="table table-hover mb-0">
+    <thead class="table-light sticky-top bg-white">
+      <tr>
+        <th>Customer</th>
+        <th>Purpose</th>
+        <th>Amount</th>
+        <th>Duration</th>
+        <th>Risk Level</th>
+        <th>Status</th>
+        <th>Date</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="
+          let app of filteredApplications;
+          trackBy: trackByApplicationId
+        "
+        class="table-row-hover"
+      >
+        <td class="fw-semibold" style="cursor: pointer" (click)="navigateToUserDetails(app.userId)">
+          {{ app.customer }}
+        </td>
+        <td style="cursor: pointer" (click)="navigateToUserDetails(app.userId)">
+          {{ app.purpose }}
+        </td>
+        <td class="fw-semibold" style="cursor: pointer" (click)="navigateToUserDetails(app.userId)">
+          ₹{{ app.amount | number : "1.0-0" }}
+        </td>
+        <td style="cursor: pointer" (click)="navigateToUserDetails(app.userId)">
+          {{ app.duration }} months
+        </td>
+        <td style="cursor: pointer" (click)="navigateToUserDetails(app.userId)">
+          <span class="fw-semibold" [ngClass]="getRiskLevelClass(app.riskLevel)">
+            {{ app.riskLevel }}
+          </span>
+        </td>
+        <td style="cursor: pointer" (click)="navigateToUserDetails(app.userId)">
+          <span class="badge" [ngClass]="getStatusClass(app.status)">
+            {{ app.status | titlecase }}
+          </span>
+        </td>
+        <td style="cursor: pointer" (click)="navigateToUserDetails(app.userId)">
+          {{ app.date }}
+        </td>
+        <td>
+          <button
+            class="btn btn-sm"
+            [ngClass]="app.status === 'active' ? 'btn-outline-primary' : 'btn-outline-secondary'"
+            (click)="sendEmail(app, $event)"
+            type="button"
+            title="Send Loan Due Email"
+          >
+            <i class="fas fa-envelope"></i>
+          </button>
+        </td>
+        <td>
+          <div class="btn-group" role="group" *ngIf="app.status.toLowerCase() === 'pending'">
+            <button
+              class="btn btn-sm btn-success"
+              (click)="approveApplication(app.id, $event)"
+              type="button"
+              title="Approve"
+            >
+              <i class="fas fa-check"></i> Approve
+            </button>
+            <button
+              class="btn btn-sm btn-danger"
+              (click)="rejectApplication(app.id, $event)"
+              type="button"
+              title="Reject"
+            >
+              <i class="fas fa-times"></i> Reject
+            </button>
+          </div>
+          <span *ngIf="app.status.toLowerCase() !== 'pending'" class="text-muted">
+            <i class="fas fa-check-circle" *ngIf="app.status === 'closed'"></i>
+            <i class="fas fa-times-circle" *ngIf="app.status === 'rejected'"></i>
+            <i class="fas fa-file-contract" *ngIf="app.status === 'active'"></i>
+            {{ app.status | titlecase }}
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+      <!-- No Results Message -->
+      <div *ngIf="filteredApplications.length === 0" class="text-center py-5">
+        <i class="fas fa-search fa-3x text-muted mb-3"></i>
+        <h5 class="text-muted">No applications found</h5>
+        <p class="text-muted">Try adjusting your search criteria</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Statistics Cards -->
+  <div class="row mt-4">
+    <div class="col-md-3 mb-3">
+      <div class="card border-0 shadow-sm h-100 stats-card pending-card">
+        <div class="card-body text-center">
+          <div class="d-flex align-items-center justify-content-center mb-2">
+            <i class="fas fa-clock fa-2x text-warning me-3"></i>
+            <div>
+              <h3 class="mb-0 fw-bold text-warning">
+                {{ applicationCounts.pending }}
+              </h3>
+              <small class="text-muted">Pending</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 mb-3">
+      <div class="card border-0 shadow-sm h-100 stats-card approved-card">
+        <div class="card-body text-center">
+          <div class="d-flex align-items-center justify-content-center mb-2">
+            <i class="fas fa-check-circle fa-2x text-success me-3"></i>
+            <div>
+              <h3 class="mb-0 fw-bold text-success">
+                {{ applicationCounts.closed }}
+              </h3>
+              <small class="text-muted">Closed</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 mb-3">
+      <div class="card border-0 shadow-sm h-100 stats-card rejected-card">
+        <div class="card-body text-center">
+          <div class="d-flex align-items-center justify-content-center mb-2">
+            <i class="fas fa-times-circle fa-2x text-danger me-3"></i>
+            <div>
+              <h3 class="mb-0 fw-bold text-danger">
+                {{ applicationCounts.rejected }}
+              </h3>
+              <small class="text-muted">Rejected</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 mb-3">
+      <div class="card border-0 shadow-sm h-100 stats-card active-card">
+        <div class="card-body text-center">
+          <div class="d-flex align-items-center justify-content-center mb-2">
+            <i class="fas fa-file-contract fa-2x text-primary me-3"></i>
+            <div>
+              <h3 class="mb-0 fw-bold text-primary">
+                {{ applicationCounts.active }}
+              </h3>
+              <small class="text-muted">Active</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

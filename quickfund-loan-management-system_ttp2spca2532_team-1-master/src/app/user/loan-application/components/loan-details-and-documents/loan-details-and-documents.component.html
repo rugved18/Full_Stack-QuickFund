@@ -1,0 +1,214 @@
+<div class="animate-fade-in-up">
+  <h5 class="mb-4 d-flex align-items-center">
+    <i class="bi bi-credit-card-fill text-primary me-2"></i>
+    Loan Details & Documents
+  </h5>
+
+  <form [formGroup]="loanForm" (ngSubmit)="onSubmit()">
+    <!-- Loan Details Tab -->
+    <ul class="nav nav-tabs mb-4" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" 
+                data-bs-toggle="tab" 
+                data-bs-target="#loan-details" 
+                type="button" 
+                role="tab">
+          <i class="bi bi-currency-rupee me-2"></i>Loan Details
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" 
+                data-bs-toggle="tab" 
+                data-bs-target="#documents" 
+                type="button" 
+                role="tab">
+          <i class="bi bi-file-earmark-text me-2"></i>Documents
+        </button>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      <!-- Loan Details Tab Content -->
+      <div class="tab-pane fade show active" id="loan-details" role="tabpanel">
+        <div class="card mb-4">
+          <div class="card-header">
+            <h6 class="mb-0">Loan Information</h6>
+          </div>
+          <div class="card-body">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">Loan Amount (₹) *</label>
+                <div class="input-group">
+                  <span style="font-size: 10px;" class="input-group-text">₹</span>
+                  <input type="number" 
+                         class="form-control" 
+                         formControlName="amount"
+                         placeholder="500000"
+                         min="10000"
+                         max="10000000"
+                         [class.is-invalid]="isFieldInvalid('amount')">
+                  <div class="invalid-feedback">{{ getFieldError('amount') }}</div>
+                </div>
+                <small class="form-text text-muted">Minimum: ₹10,000 | Maximum: ₹1,00,00,000</small>
+              </div>
+              
+              <div class="col-md-6">
+                <label class="form-label">Loan Purpose *</label>
+                <select class="form-select" 
+                        formControlName="purpose"
+                        [class.is-invalid]="isFieldInvalid('purpose')">
+                  <option value="">Select Purpose</option>
+                  <option *ngFor="let purpose of loanPurposes" [value]="purpose.value">
+                    {{ purpose.label }}
+                  </option>
+                </select>
+                <div class="invalid-feedback">{{ getFieldError('purpose') }}</div>
+              </div>
+              
+              <div class="col-md-6">
+                <label class="form-label">Loan Duration *</label>
+                <select class="form-select" 
+                        formControlName="duration"
+                        [class.is-invalid]="isFieldInvalid('duration')">
+                  <option value="">Select Duration</option>
+                  <option *ngFor="let duration of loanDurations" [value]="duration.value">
+                    {{ duration.label }}
+                  </option>
+                </select>
+                <div class="invalid-feedback">{{ getFieldError('duration') }}</div>
+              </div>
+              
+              <div class="col-md-6" *ngIf="calculatedEMI > 0">
+                <label class="form-label">Estimated EMI</label>
+                <div class="form-control-plaintext bg-light rounded p-2">
+                  <strong class="text-success">₹{{ calculatedEMI | number:'1.0-0' }}<small class="text-muted d-block">per month</small></strong> 
+                </div>
+              </div>
+            </div>
+            
+            <!-- EMI Calculation Info -->
+            <div class="alert alert-info mt-3" *ngIf="calculatedEMI > 0">
+              <i class="bi bi-info-circle me-2"></i>
+              <strong style="font-size: 12px;">EMI Breakdown:</strong>
+              <ul class="mb-0 mt-2" style="font-size: 12px;">
+                <li>Total Amount: ₹{{ loanForm.get('amount')?.value | number:'1.0-0' }}</li>
+                <li>Duration: {{ getDurationLabel(loanForm.get('duration')?.value) }}</li>
+                <li>Interest Rate: {{ getInterestRate() }}% per annum (approximate)</li>
+                <li>Total Payable: ₹{{ (calculatedEMI * (+loanForm.get('duration')?.value || 0)) | number:'1.0-0' }}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Documents Tab Content -->
+      <div class="tab-pane fade" id="documents" role="tabpanel">
+        <div class="card mb-4">
+          <div class="card-header bg-light">
+            <h5 class="mb-0">Required Documents</h5>
+          </div>
+          <div class="card-body">
+            <div class="row g-4">
+              <!-- Aadhaar Card -->
+              <div class="col-md-6">
+                <label class="form-label">Aadhaar Card *</label>
+                <div class="file-upload-area" 
+                     (click)="fileInputAadhaar.click()"
+                     (dragover)="onDragOver($event)"
+                     (dragleave)="onDragLeave($event)"
+                     (drop)="onDrop($event, 'aadhaarCard')"
+                     [class.dragover]="isDragOver">
+                  <div *ngIf="!uploadedFiles['aadhaarCard']" class="text-center">
+                    <i class="bi bi-cloud-upload fs-1 text-muted"></i>
+                    <p class="mb-1">Click to upload or drag & drop</p>
+                    <small class="text-muted">PDF, JPG, PNG (Max 5MB)</small>
+                  </div>
+                  <div *ngIf="uploadedFiles['aadhaarCard']" class="text-center">
+                    <i class="bi bi-file-check fs-1 text-success"></i>
+                    <p class="mb-1">{{ uploadedFiles['aadhaarCard'].name }}</p>
+                    <button type="button" 
+                            class="btn btn-sm btn-outline-danger"
+                            (click)="removeFile('aadhaarCard', $event)">
+                      <i class="bi bi-trash"></i> Remove
+                    </button>
+                  </div>
+                </div>
+                <input type="file" 
+                       #fileInputAadhaar
+                       class="d-none" 
+                       accept=".pdf,.jpg,.jpeg,.png"
+                       (change)="onFileSelected($event, 'aadhaarCard')">
+              </div>
+              
+              <!-- PAN Card -->
+              <div class="col-md-6">
+                <label class="form-label">PAN Card *</label>
+                <div class="file-upload-area" 
+                     (click)="fileInputPAN.click()"
+                     (dragover)="onDragOver($event)"
+                     (dragleave)="onDragLeave($event)"
+                     (drop)="onDrop($event, 'panCard')"
+                     [class.dragover]="isDragOver">
+                  <div *ngIf="!uploadedFiles['panCard']" class="text-center">
+                    <i class="bi bi-cloud-upload fs-1 text-muted"></i>
+                    <p class="mb-1">Click to upload or drag & drop</p>
+                    <small class="text-muted">PDF, JPG, PNG (Max 5MB)</small>
+                  </div>
+                  <div *ngIf="uploadedFiles['panCard']" class="text-center">
+                    <i class="bi bi-file-check fs-1 text-success"></i>
+                    <p class="mb-1">{{ uploadedFiles['panCard'].name }}</p>
+                    <button type="button" 
+                            class="btn btn-sm btn-outline-danger"
+                            (click)="removeFile('panCard', $event)">
+                      <i class="bi bi-trash"></i> Remove
+                    </button>
+                  </div>
+                </div>
+                <input type="file" 
+                       #fileInputPAN
+                       class="d-none" 
+                       accept=".pdf,.jpg,.jpeg,.png"
+                       (change)="onFileSelected($event, 'panCard')">
+              </div>
+            </div>
+            
+            <!-- Document Upload Guidelines -->
+            <div class="alert alert-warning mt-4">
+              <i class="bi bi-exclamation-triangle me-2"></i>
+              <strong style="font-size: 12px;">Document Guidelines:</strong>
+              <ul style="font-size: 12px;" class="mb-0 mt-2">
+                <li>All documents should be clear and readable</li>
+                <li>Accepted formats: PDF, JPG, PNG</li>
+                <li>Maximum file size: 5MB per document</li>
+                <li>Aadhaar and PAN cards are mandatory</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p class="text-danger" style="font-size: 12px;">
+        "Fill in all the fields marked with * to proceed."
+      </p>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="d-flex justify-content-between">
+      <button type="button" 
+              class="btn btn-bg-primary text-white btn-md"
+              (click)="goBack()">
+        <i class="bi bi-arrow-left me-2"></i>
+        Previous
+      </button>
+      
+      <button type="submit" 
+              class="btn btn-bg-primary text-white btn-md"
+              [disabled]="!isFormValid()">
+        <i class="bi bi-arrow-right me-2"></i>
+        Continue to Review
+      </button>
+    </div>
+  </form>
+</div>

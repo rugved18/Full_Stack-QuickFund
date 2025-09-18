@@ -1,0 +1,141 @@
+.dashboard-wrapper {
+  font-size: 12px;
+  padding: 24px;
+}
+
+.gradient{
+    background:var(--primary-gradient)
+}
+
+.btn{
+    font-size: 10px;
+}
+
+.stat-card {
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.03);
+  height: 100%;
+}
+
+.stat-card .label {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.action-card {
+  border-radius: 12px;
+  padding: 5px 16px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.04);
+  background: #ffffff;
+  height: 100%;
+}
+
+.icon-box {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bg-purple {
+  background-color: #9f7aea;
+}
+
+.recent-loans {
+  border-radius: 12px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.04);
+}
+
+
+.small {
+  font-size: 8px;
+}
+
+
+:host {
+  font-size: 12px;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  height: 100%;
+  border-left: 4px solid transparent;
+  transition: box-shadow 0.2s;
+}
+
+.stat-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.stat-title {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.stat-value {
+  font-size: 1.25rem;
+}
+
+.stat-subtext {
+  color: var(--secondary);
+  font-size: 0.5rem;
+}
+
+.border-left-blue {
+  border-left: 4px solid var(--primary-color);
+}
+
+.border-left-green {
+  border-left: 4px solid var(--secondary-color);
+}
+
+.border-left-orange {
+  border-left: 4px solid var(--orange);
+}
+
+.icon-primary, .plus {
+  color: var(--primary-color);
+}
+.plus{
+    color: var(--primary-color);
+    background-color: #d9e2f4;;
+}
+.icon-green, .repeat {
+  color: var(--secondary-color);
+}
+
+ .repeat{
+     color: var(--secondary-color);
+     background-color:#e1f6ed;
+ }
+
+.icon-orange {
+  color: var(--orange);
+}
+
+.clock{
+    color:#8f1ff1;
+    background-color: #e9e4f5;
+}
+.text-primary {
+  color: var(--primary-color);
+}
+
+.text-green {
+  color: var(--secondary-color);
+}
+
+.text-orange {
+  color: var(--orange);
+}
+
+.dollar{
+    background-color: rgb(241, 240, 240);
+    border-radius:8px;
+}

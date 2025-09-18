@@ -1,0 +1,127 @@
+<div class="text-center animate-fade-in-up">
+  <!-- Success Icon -->
+  <div class="mb-4">
+    <div class="success-icon mx-auto mb-4">
+      <i class="bi bi-check-circle-fill "></i>
+    </div>
+    <h5 class="text-success mb-3">Application Submitted Successfully!</h5>
+    <p class="text-muted ">Thank you for choosing QuickFund for your loan needs.</p>
+  </div>
+
+  <!-- Application Details Card -->
+  <div class="card shadow-lg border-0 mb-4">
+    <div class="card-header text-black" >
+      <h6 class="mb-0">
+        <i class="bi bi-file-earmark-check me-2"></i>
+        Application Summary
+      </h6>
+    </div>
+    <div class="card-body">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <div class="bg-light rounded p-3">
+            <i class="bi bi-hash me-2"></i>
+            <strong>Application ID:</strong>
+            <p class="mb-0 mt-1 ">{{ applicationId }}</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="bg-light rounded p-3">
+            <i class="bi bi-currency-rupee me-2"></i>
+            <strong>Loan Amount:</strong>
+            <p class="mb-0 mt-1 ">₹{{ application.amount | number:'1.0-0' }}</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="bg-light rounded p-3">
+            <i class="bi bi-calendar me-2"></i>
+            <strong>Submission Date:</strong>
+            <p class="mb-0 mt-1">{{ submissionDate | date:'fullDate' }}</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="bg-light rounded p-3">
+            <i class="bi bi-clock me-2"></i>
+            <strong>Expected Response:</strong>
+            <p class="mb-0 mt-1">{{ expectedResponseDate | date:'mediumDate' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Next Steps -->
+  <div class="card shadow-lg border-0 mb-4">
+    <div class="card-header text-black">
+      <h6 class="mb-0">
+        <i class="bi bi-lightbulb me-2"></i>
+        What Happens Next?
+      </h6>
+    </div>
+    <div class="card-body">
+      <div class="row g-3">
+        <div class="col-md-4">
+          <div class="text-center">
+            <div class="step-icon bg-opacity-10 rounded-circle p-3 mx-auto mb-3">
+              <i class="bi bi-telephone text-primary fs-4"></i>
+            </div>
+            <h6>Verification Call</h6>
+            <p class="text-muted small">Our team will contact you within 24 hours to verify your information</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="text-center">
+            <div class="step-icon bg-opacity-10 rounded-circle p-3 mx-auto mb-3">
+              <i class="bi bi-shield-check text-primary fs-4"></i>
+            </div>
+            <h6>Credit Check</h6>
+            <p class="text-muted small">We'll perform a credit assessment based on your financial profile</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="text-center">
+            <div class="step-icon bg-opacity-10 rounded-circle p-3 mx-auto mb-3">
+              <i class="bi bi-check2-circle text-primary fs-4"></i>
+            </div>
+            <h6>Final Decision</h6>
+            <p class="text-muted small">You'll receive our decision via email and SMS within 3-5 business days</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="d-flex justify-content-center gap-3">
+    <button type="button" 
+            class="btn btn-outline-primary btn-md"
+            (click)="downloadAcknowledgment()">
+      <i class="bi bi-download me-2"></i>
+      Download Receipt
+    </button>
+    
+    <button type="button" 
+            class="btn btn-outline-success btn-md"
+            (click)="trackApplication()">
+      <i class="bi bi-geo-alt me-2"></i>
+      Track Application
+    </button>
+    
+    <button type="button" 
+            class="btn btn-bg-primary text-white btn-md"
+            (click)="startNewApplication()">
+      <i class="bi bi-plus-circle me-2"></i>
+      New Application
+    </button>
+  </div>
+
+  <!-- Contact Support -->
+  <div class="mt-5 pt-4 border-top">
+    <h6 class="text-muted">Need Help?</h6>
+    <p class="text-muted">
+      Contact our support team at 
+      <a href="tel:+911800123456" class="text-decoration-none">+91 1800-123-456</a> or 
+      <a href="mailto:support&#64;quickfund.com" class="text-decoration-none">support&#64;quickfund.com</a>
+    </p>
+  </div>
+</div>

@@ -1,0 +1,65 @@
+
+.mx-7{
+    margin-left: 7rem;
+    margin-right: 7rem;
+}
+
+.card {
+    border-radius: 1rem;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+.card-body {
+    padding: 1.5rem;
+}
+
+.heading-gradient {
+    background: var(--multi-color-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  
+}
+
+.container-color {
+    background: var(--soft-gradient);
+}
+
+.bold {
+    -webkit-text-stroke: 0.5px ;
+}
+
+.feature-icon {
+  background: var(--soft-gradient);
+  padding: 1.5rem;              
+  margin-bottom: 1rem;       
+  font-weight: bold;         
+  color: #0d6efd;    
+  font-size: 1.75rem;  
+  border-radius: 25%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.offcanvas-custom {
+    width: 90vw;
+}
+  
+ 
+@media (min-width: 768px) {
+    .offcanvas-custom {
+      width: 50vw;
+    }
+}
+  
+
+@media (min-width: 992px) {
+    .offcanvas-custom {
+      width: 40vw;
+    }
+}
+  
+

@@ -1,0 +1,115 @@
+<div class="container px-4">
+  <div>
+    <strong class = "qf-logo mb-3">QF</strong>
+    <h4 class="fw-bold text-dark">Create Your Account</h4>
+    <p class="text-muted mb-3">Join QuickFund today and start managing your loans with ease</p>
+  </div>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="mb-2">
+        <label for="name" class="form-label fw-small">Full Name</label>
+        <div class="input-group">       
+          <input 
+            type="name" 
+            class="form-control" 
+            id="name" 
+            formControlName="name"
+          />
+        </div>
+        <div *ngIf="registerForm.get('name')?.touched && registerForm.get('name')?.invalid" class="text-danger mt-1 small">
+          Valid Name is required.
+        </div>
+      </div>
+      <div class="mb-2">
+        <label for="email" class="form-label">Email</label>
+        <div class="input-group">       
+          <input 
+            type="email" 
+            class="form-control" 
+            id="email" 
+            formControlName="email"
+          />
+        </div>
+        <div *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid" class="text-danger mt-1 small">
+          Valid email is required.
+        </div>
+      </div>
+  
+      <div class="mb-2">
+        <label for="phone" class="form-label">Phone Number</label>
+        <div class="input-group">       
+          <input 
+            type="tel" 
+            class="form-control" 
+            id="phone" 
+            formControlName="phone"
+          />
+        </div>
+        <div *ngIf="registerForm.get('phone')?.touched && registerForm.get('phone')?.invalid" class="text-danger mt-1 small">
+          Valid Phone Number is required.
+        </div>
+      </div>
+  
+      <div class="mb-2">
+        <label for="password" class="form-label">Password</label>
+        <div class="input-group">
+          <input 
+            [type]="showPassword ? 'text' : 'password'" 
+            class="form-control" 
+            id="password" 
+            formControlName="password"
+          />
+          <button 
+            type="button" 
+            class="btn btn-outline-secondary" 
+            (click)="togglePassword()" 
+            tabindex="-1">
+            <i class="bi" [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'"></i>
+          </button>
+        </div>
+        <div *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid" class="text-danger mt-1 small">
+          <small *ngIf="registerForm.controls['password'].errors?.['pattern']">
+            Password must be 8-16 characters long, and include at least one uppercase letter, 
+            one lowercase letter, one number, and one special character (&#64;$!%*?&).
+          </small>
+          
+        </div>
+      </div>
+
+      <div class="mb-2">
+        <label for="confirmPassword" class="form-label">Confirm Password</label>
+        <div class="input-group">
+          <input 
+            [type]="showConfirmPassword ? 'text' : 'password'" 
+            class="form-control" 
+            id="confirmPassword" 
+            formControlName="confirmPassword"
+          />
+          <button 
+            type="button" 
+            class="btn btn-outline-secondary" 
+            (click)="toggleConfirmPassword()" 
+            tabindex="-1">
+            <i class="bi" [ngClass]="showConfirmPassword ? 'bi-eye-slash' : 'bi-eye'"></i>
+          </button>
+        </div>
+        <div *ngIf="registerForm.get('confirmPassword')?.touched && registerForm.get('confirmPassword')?.invalid" class="text-danger mt-1 small">
+          <small>Valid Confirm Password is required.</small>
+        </div>
+      </div>
+  
+      <div class="d-grid mb-2 py-3">
+        <button type="submit" class="btn btn-bg-primary text-white">
+          Create Account
+        </button>
+      </div>
+  
+      <div class="text-center mt-1">
+        <span class="text-muted">Already have an account?</span>
+        <button type="button" class="btn btn-link p-0" (click)="switchToLogin.emit()">Sign in</button>
+      </div>
+
+      <div *ngIf="errorMessage" class="text-danger mb-2 mt-2 text-center">{{ errorMessage }}</div>
+    </form>
+  </div>
+  
+  

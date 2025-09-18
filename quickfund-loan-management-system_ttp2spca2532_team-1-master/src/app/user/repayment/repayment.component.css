@@ -1,0 +1,136 @@
+/* Minimal design tweaks */
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+.gradient-btn {
+  background: linear-gradient(to right, #69c0ff, #73e0a9);
+  color: white;
+  font-weight: 600;
+  border: none;
+  transition: 0.3s ease-in-out;
+}
+
+.row,
+input::placeholder,
+.form-select,
+.form-select option {
+  font-size: 12px;
+}
+
+input::placeholder{
+  color: #868383;
+}
+
+input,
+input:focus,
+.custom-icon,
+.form-select,
+.form-select:focus {
+  background-color: #f1efef;
+  color: #868383;
+  border: none;
+  outline: none;
+}
+
+.back-link {
+  font-size: 0.5rem;
+}
+
+.small-icon {
+  font-size: 1rem;
+}
+
+.info-icon {
+  font-size: 2.4rem;
+}
+
+.card {
+  border: 1px solid #e0e0e0;
+}
+
+.card p {
+  line-height: 1.4;
+}
+
+/* Loan Summary Modern Card Styles */
+.loan-summary-card {
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #e6eaea;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 28px 24px 24px 24px !important;
+}
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+.label {
+  color: #6c757d;
+  font-weight: 500;
+  font-size: 15px;
+}
+.value {
+  font-weight: 600;
+  font-size: 15px;
+}
+.status-pill {
+  display: inline-block;
+  padding: 2px 16px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: lowercase;
+  background: #e6f9ed;
+  color: #1bbf5c;
+  border: none;
+  letter-spacing: 0.5px;
+}
+.status-pill.closed {
+  background: #f7eaea;
+  color: #e74c3c;
+}
+.status-pill.paid {
+  background: #e6f9ed;
+  color: #1bbf5c;
+}
+
+/* Recent Payments Modern Card Styles */
+.recent-payments-card {
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #e6eaea;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 28px 24px 24px 24px !important;
+}
+.payment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.payment-item {
+  background: #f8fafd;
+  border-radius: 10px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: none;
+  border: none;
+}
+.payment-item .fw-bold {
+  font-size: 16px;
+}
+.payment-item .text-muted {
+  font-size: 13px;
+}
+
+.recent-payments-card{
+  margin-bottom: 60px;
+}
+
+
+

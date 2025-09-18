@@ -1,0 +1,880 @@
+/* Page Background */
+:host {
+  display: block;
+  min-height: 100vh;
+  padding: 20px;
+  font-size: 12px; /* Match dashboard font size */
+}
+
+/* Header alignment - Back to Dashboard and Reports & Analytics on same line */
+.d-flex.align-items-center.gap-4 {
+  align-items: center !important;
+}
+
+.d-flex.align-items-center.gap-4 .flex-shrink-0 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.d-flex.align-items-center.gap-4 .flex-grow-1 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+/* KPI Icons - Proper sizing and styling */
+.rounded-circle {
+  width: 48px !important;
+  height: 48px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.rounded-circle i {
+  font-size: 1.25rem !important;
+  line-height: 1 !important;
+}
+
+/* Ensure KPI cards have consistent height and spacing */
+.card {
+  height: 100% !important;
+  min-height: 140px !important;
+}
+
+.card-body {
+  padding: 1rem !important;
+}
+
+/* Custom color utilities for KPI cards */
+.bg-green-subtle {
+  background-color: rgba(16, 185, 129, 0.1);
+}
+
+.bg-blue-subtle {
+  background-color: rgba(59, 130, 246, 0.1);
+}
+
+.bg-purple-subtle {
+  background-color: rgba(139, 92, 246, 0.1);
+}
+
+.bg-orange-subtle {
+  background-color: rgba(245, 158, 11, 0.1);
+}
+
+/* KPI Metric Cards - Compact styling to match user dashboard */
+.card {
+  border-radius: 12px !important;
+  padding: 16px !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05) !important;
+  height: 100%;
+  border: none;
+  transition: box-shadow 0.2s;
+  font-size: 12px; /* Match dashboard font size */
+}
+
+.card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+}
+
+.card-body {
+  padding: 16px !important;
+}
+
+.card-title {
+  font-size: 0.75rem !important; /* Reduced from 0.875rem to match dashboard */
+  font-weight: 600 !important;
+  margin-bottom: 0.5rem !important;
+  color: #6b7280 !important;
+}
+
+.card .fw-bold {
+  font-size: 1rem !important; /* Reduced from 1.25rem to match dashboard */
+  font-weight: 700 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.card .small {
+  font-size: 0.65rem !important; /* Reduced from 0.75rem to match dashboard */
+  color: #9ca3af !important;
+}
+
+/* Repayment History Section - Reduced font sizes */
+.repayment-history-section h2 {
+  font-size: 1rem !important; /* Reduced from h4 */
+  font-weight: 600 !important;
+}
+
+.repayment-history-section p {
+  font-size: 0.75rem !important; /* Reduced from default */
+  color: #6b7280 !important;
+}
+
+.repayment-history-section .table th {
+  font-size: 0.7rem !important; /* Reduced table headers */
+  font-weight: 600 !important;
+}
+
+.repayment-history-section .table td {
+  font-size: 0.7rem !important; /* Reduced table data */
+}
+
+.repayment-history-section .badge {
+  font-size: 0.65rem !important; /* Reduced badge text */
+}
+
+.repayment-history-section .btn {
+  font-size: 0.7rem !important; /* Reduced button text */
+}
+
+.repayment-history-section .dropdown-toggle {
+  font-size: 0.7rem !important; /* Reduced dropdown text */
+}
+
+.text-green {
+  color: #10b981 !important;
+}
+
+.text-blue {
+  color: #3b82f6 !important;
+}
+
+.text-purple {
+  color: #8b5cf6 !important;
+}
+
+.text-orange {
+  color: #f59e0b !important;
+}
+
+.border-green {
+  border-color: #10b981 !important;
+}
+
+.border-blue {
+  border-color: #3b82f6 !important;
+}
+
+.border-purple {
+  border-color: #8b5cf6 !important;
+}
+
+.border-orange {
+  border-color: #f59e0b !important;
+}
+
+/* Gradient Backgrounds for Analytics Cards */
+.bg-gradient-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.bg-gradient-info {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.bg-gradient-success {
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+.bg-gradient-warning {
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+.bg-gradient-danger {
+  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+}
+
+.bg-gradient-purple {
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+}
+
+.bg-gradient-dark {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+}
+
+/* Super Attractive Report Cards */
+.report-card {
+  position: relative;
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 2px solid transparent;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.report-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--card-gradient-start), var(--card-gradient-end));
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.report-card:hover::before {
+  transform: scaleX(1);
+}
+
+.report-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  border-color: var(--card-border-color);
+}
+
+/* Card Icon */
+.card-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: white;
+  background: linear-gradient(135deg, var(--card-gradient-start), var(--card-gradient-end));
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.report-card:hover .card-icon {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Card Content */
+.card-content {
+  flex: 1;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.card-description {
+  color: #6b7280;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
+}
+
+/* Card Stats */
+.card-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.stat-item i {
+  font-size: 0.6rem;
+  margin-right: 0.5rem;
+}
+
+/* Card Arrow */
+.card-arrow {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  transition: all 0.3s ease;
+}
+
+.report-card:hover .card-arrow {
+  background: var(--card-gradient-start);
+  color: white;
+  transform: translateX(5px);
+}
+
+/* Individual Card Themes */
+.portfolio-card {
+  --card-gradient-start: #667eea;
+  --card-gradient-end: #764ba2;
+  --card-border-color: #667eea;
+}
+
+.disbursement-card {
+  --card-gradient-start: #4facfe;
+  --card-gradient-end: #00f2fe;
+  --card-border-color: #4facfe;
+}
+
+.repayment-card {
+  --card-gradient-start: #fa709a;
+  --card-gradient-end: #fee140;
+  --card-border-color: #fa709a;
+}
+
+.revenue-card {
+  --card-gradient-start: #43e97b;
+  --card-gradient-end: #38f9d7;
+  --card-border-color: #43e97b;
+}
+
+.risk-card {
+  --card-gradient-start: #ff9a9e;
+  --card-gradient-end: #fecfef;
+  --card-border-color: #ff9a9e;
+}
+
+.segmentation-card {
+  --card-gradient-start: #a8edea;
+  --card-gradient-end: #fed6e3;
+  --card-border-color: #a8edea;
+}
+
+.funnel-card {
+  --card-gradient-start: #2c3e50;
+  --card-gradient-end: #34495e;
+  --card-border-color: #2c3e50;
+}
+
+/* Card Animations */
+@keyframes cardFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.report-card {
+  animation: cardFloat 3s ease-in-out infinite;
+}
+
+.report-card:nth-child(1) { animation-delay: 0s; }
+.report-card:nth-child(2) { animation-delay: 0.2s; }
+.report-card:nth-child(3) { animation-delay: 0.4s; }
+.report-card:nth-child(4) { animation-delay: 0.6s; }
+.report-card:nth-child(5) { animation-delay: 0.8s; }
+.report-card:nth-child(6) { animation-delay: 1s; }
+.report-card:nth-child(7) { animation-delay: 1.2s; }
+
+.report-card:hover {
+  animation: none;
+}
+
+/* Beautiful Custom Modal Styles */
+.modal-content {
+  border-radius: 20px !important;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25) !important;
+  animation: modalSlideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-header {
+  padding: 2rem 2rem 1rem 2rem !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.modal-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+  pointer-events: none;
+}
+
+.modal-title {
+  font-size: 1.75rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.modal-body {
+  padding: 2rem !important;
+  background: linear-gradient(135deg, #fafbfc 0%, #f5f7fa 100%);
+}
+
+/* Modal Metrics Cards */
+.modal-body .text-center {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.modal-body .text-center:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.modal-body .fw-bold {
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 0.5rem;
+}
+
+/* Chart Container Styling */
+.chart-container {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.chart-container .d-flex {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+
+.chart-container .d-flex:hover {
+  background: #e9ecef;
+  transform: translateX(5px);
+}
+
+/* Progress Bar Styling */
+.progress {
+  background-color: #f1f3f4;
+  border-radius: 10px;
+  height: 12px !important;
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar {
+  border-radius: 10px;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* Table Styling */
+.table-responsive {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.table {
+  margin-bottom: 0;
+}
+
+.table thead th {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border: none;
+  padding: 1rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #495057;
+}
+
+.table tbody td {
+  padding: 1rem;
+  border: none;
+  border-bottom: 1px solid #f1f3f4;
+  vertical-align: middle;
+  transition: all 0.2s ease;
+}
+
+.table tbody tr:hover {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  transform: scale(1.01);
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Insights Section */
+.bg-light {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%) !important;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 16px !important;
+  padding: 1.5rem !important;
+}
+
+.bg-light h6 {
+  color: #495057;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.bg-light ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.bg-light li {
+  margin-bottom: 0.5rem;
+  color: #6c757d;
+  line-height: 1.5;
+}
+
+.bg-light li:last-child {
+  margin-bottom: 0;
+}
+
+/* Modal Footer */
+.modal-footer {
+  padding: 1.5rem 2rem 2rem 2rem !important;
+  background: white;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.modal-footer .btn {
+  border-radius: 12px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.modal-footer .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.modal-footer .btn-secondary {
+  background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+  color: white;
+}
+
+.modal-footer .btn-primary {
+  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+  color: white;
+}
+
+/* Close Button Styling */
+.btn-close {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+/* Card Animations and Effects */
+.card {
+  transition: all 0.3s ease;
+  border: none;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+.card-header {
+  border-bottom: none;
+  padding: 1rem 1.5rem;
+}
+
+.card-header h5 {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Progress Bar Styling */
+.progress {
+  background-color: #f1f3f4;
+  border-radius: 10px;
+}
+
+.progress-bar {
+  border-radius: 10px;
+  transition: width 0.6s ease;
+}
+
+/* Table Styling */
+.table-sm th {
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #6c757d;
+}
+
+.table-sm td {
+  font-size: 0.875rem;
+  vertical-align: middle;
+}
+
+/* Badge Styling */
+.badge {
+  font-weight: 500;
+  padding: 0.5em 0.75em;
+  border-radius: 6px;
+}
+
+/* Funnel Chart Styling */
+.rounded-circle {
+  transition: all 0.3s ease;
+}
+
+.rounded-circle:hover {
+  transform: scale(1.1);
+}
+
+/* Custom Scrollbar */
+.table-responsive::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Animation for cards */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.card:nth-child(1) { animation-delay: 0.1s; }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.3s; }
+.card:nth-child(4) { animation-delay: 0.4s; }
+.card:nth-child(5) { animation-delay: 0.5s; }
+.card:nth-child(6) { animation-delay: 0.6s; }
+.card:nth-child(7) { animation-delay: 0.7s; }
+
+/* Hover effects for interactive elements */
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.dropdown-item:hover {
+  background-color: #f8f9fa;
+  transform: translateX(5px);
+  transition: all 0.2s ease;
+}
+
+/* Status indicators */
+.text-success {
+  color: #28a745 !important;
+}
+
+.text-warning {
+  color: #ffc107 !important;
+}
+
+.text-danger {
+  color: #dc3545 !important;
+}
+
+.text-info {
+  color: #17a2b8 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .card-header h5 {
+    font-size: 1rem;
+  }
+  
+  .table-sm th,
+  .table-sm td {
+    font-size: 0.8rem;
+  }
+  
+  .badge {
+    font-size: 0.75rem;
+  }
+  
+  .report-card {
+    padding: 1.5rem;
+  }
+  
+  .card-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
+  
+  .card-title {
+    font-size: 1.1rem;
+  }
+
+  .modal-dialog {
+    margin: 1rem;
+  }
+
+  .modal-header {
+    padding: 1.5rem 1.5rem 1rem 1.5rem !important;
+  }
+
+  .modal-body {
+    padding: 1.5rem !important;
+  }
+
+  .modal-footer {
+    padding: 1rem 1.5rem 1.5rem 1.5rem !important;
+  }
+}
+
+/* Hover effect for back link */
+a:hover {
+  color: #333 !important;
+}
+
+/* Heading styling */
+.heading {
+  font-size: 1.25rem !important; /* Reduced from 1.5rem to match dashboard */
+  margin-top: 10px;
+}
+
+/* Export dropdown styling */
+.dropdown-menu {
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 0.5rem 0;
+}
+
+.dropdown-item {
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: none;
+  background: transparent;
+}
+
+.dropdown-item:hover {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  transform: translateX(5px);
+  color: #495057;
+}
+
+.dropdown-item i {
+  font-size: 1.1rem;
+  margin-right: 0.75rem;
+}
+
+.dropdown-item.text-success {
+  color: #28a745 !important;
+}
+
+.dropdown-item.text-danger {
+  color: #dc3545 !important;
+}
+
+/* Modal footer button spacing */
+.modal-footer .dropdown {
+  margin-right: 0.5rem;
+}
+
+.modal-footer .btn {
+  border-radius: 12px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.modal-footer .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.modal-footer .btn-primary {
+  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+  color: white;
+}
+
+.modal-footer .btn-secondary {
+  background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+  color: white;
+}

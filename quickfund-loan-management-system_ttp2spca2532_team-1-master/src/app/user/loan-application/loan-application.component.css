@@ -1,0 +1,58 @@
+.step-circle {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.step-circle.active {
+  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));;
+  color: white;
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.step-circle.completed {
+  background: #02b46a;
+  color: white;
+}
+
+.step-circle.pending {
+  background: #f8f9fa;
+  color: #6c757d;
+  border: 2px solid #6c757d;
+}
+
+.btn-gradient {
+  background: linear-gradient( to right, #69c0ff, #73e0a9);
+  color: white;
+  font-weight: 600;
+  border: none;
+  transition: 0.3s ease-in-out;
+}
+
+.btn-gradient:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  color: white;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

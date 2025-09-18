@@ -1,0 +1,173 @@
+<div class="animate-fade-in-up">
+  <h5 class="mb-4 d-flex align-items-center">
+    <i class="bi bi-eye-fill text-primary me-2"></i>
+    Review Your Application
+  </h5>
+
+  <div class="row g-4">
+    <!-- Personal Information -->
+    <div class="col-12">
+      <div class="card h-100">
+        <div class="card-header text-black">
+          <h6 class="mb-0">
+            <i class="bi bi-person-fill me-2"></i>
+            Personal Information
+          </h6>
+        </div>
+        <div class="card-body">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <strong>Full Name:</strong>
+              <p class="mb-0 text-muted">{{ application.personalInfo.firstName }} {{ application.personalInfo.lastName }}</p>
+            </div>
+            <div class="col-md-6">
+              <strong>Email:</strong>
+              <p class="mb-0 text-muted">{{ application.personalInfo.email }}</p>
+            </div>
+            <div class="col-md-6">
+              <strong>Phone:</strong>
+              <p class="mb-0 text-muted">{{ application.personalInfo.countryCode }} {{ application.personalInfo.phone }}</p>
+            </div>
+            <div class="col-md-6">
+              <strong>Date of Birth:</strong>
+              <p class="mb-0 text-muted">{{ application.personalInfo.dateOfBirth | date:'mediumDate' }}</p>
+            </div>
+            <div class="col-md-6">
+              <strong>Aadhaar Number:</strong>
+              <p class="mb-0 text-muted">{{ maskAadhaar(application.personalInfo.aadharNumber) }}</p>
+            </div>
+            <div class="col-md-6">
+              <strong>Occupation:</strong>
+              <p class="mb-0 text-muted">{{ getOccupationLabel(application.personalInfo.occupationType) }}</p>
+            </div>
+            <div class="col-12">
+              <strong>Address:</strong>
+              <p class="mb-0 text-muted">
+                {{ application.personalInfo.address.street }},<br>
+                {{ application.personalInfo.address.city }}, {{ application.personalInfo.address.state }} - {{ application.personalInfo.address.pinCode }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loan Details -->
+    <div class="col-md-6">
+      <div class="card h-100">
+        <div class="card-header bg-success text-black">
+          <h6 class="mb-0">
+            <i class="bi bi-currency-rupee me-2"></i>
+            Loan Details
+          </h6>
+        </div>
+        <div class="card-body">
+          <div class="mb-3">
+            <strong>Loan Amount:</strong>
+            <p class="mb-0 text-muted ">₹{{ application.amount | number:'1.0-0' }}</p>
+          </div>
+          <div class="mb-3">
+            <strong>Purpose:</strong>
+            <p class="mb-0 text-muted">{{ getLoanPurposeLabel(application.purpose) }}</p>
+          </div>
+          <div class="mb-3">
+            <strong>Duration:</strong>
+            <p class="mb-0 text-muted">{{ getLoanDurationLabel(application.duration) }}</p>
+          </div>
+          <div class="mb-3">
+            <strong>Estimated EMI:</strong>
+            <p class="mb-0 text-success ">₹{{ calculatedEMI | number:'1.0-0' }}/month</p>
+          </div>
+          <div class="mb-0">
+            <strong>Total Payable:</strong>
+            <p class="mb-0 text-muted">₹{{ totalPayable | number:'1.0-0' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Documents -->
+    <div class="col-md-6">
+      <div class="card h-100">
+        <div class="card-header bg-info text-black">
+          <h6 class="mb-0">
+            <i class="bi bi-file-earmark-text me-2"></i>
+            Documents
+          </h6>
+        </div>
+        <div class="card-body">
+          <div class="mb-3">
+            <div class="d-flex align-items-center">
+              <i class="bi bi-check-circle-fill text-success me-2"></i>
+              <strong>Aadhaar Card:</strong>
+            </div>
+            <p class="mb-0 text-muted ms-4">{{ getDocumentName('aadhaarCard') }}</p>
+          </div>
+          <div class="mb-3">
+            <div class="d-flex align-items-center">
+              <i class="bi bi-check-circle-fill text-success me-2"></i>
+              <strong>PAN Card:</strong>
+            </div>
+            <p class="mb-0 text-muted ms-4">{{ getDocumentName('panCard') }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Terms and Conditions -->
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header bg-warning text-dark">
+          <h6 class="mb-0">
+            <i class="bi bi-exclamation-triangle me-2"></i>
+            Terms and Conditions
+          </h6>
+        </div>
+        <div class="card-body">
+          <div class="form-check mb-3">
+            <input class="form-check-input" 
+                   type="checkbox" 
+                   id="termsAccept"
+                   [(ngModel)]="termsAccepted">
+            <label class="form-check-label" for="termsAccept">
+              I accept the <a href="#" class="text-primary">Terms and Conditions</a> and 
+              <a href="#" class="text-primary">Privacy Policy</a>
+            </label>
+          </div>
+          
+          <div class="form-check mb-3">
+            <input class="form-check-input" 
+                   type="checkbox" 
+                   id="creditConsent"
+                   [(ngModel)]="creditCheckConsent">
+            <label class="form-check-label" for="creditConsent">
+              I consent to credit checks and verification of the information provided
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="d-flex justify-content-between mt-4">
+    <button type="button" 
+            class="btn btn-bg-primary text-white btn-md"
+            (click)="goBack()">
+      <i class="bi bi-arrow-left me-2"></i>
+      Previous
+    </button>
+    
+    <button type="button" 
+            class="btn btn-bg-primary text-white btn-md"
+            [disabled]="!canSubmit()"
+            (click)="submitApplication(application, selectedFiles)">
+      <i class="bi bi-send me-2" *ngIf="!isSubmitting"></i>
+      <span class="spinner-border spinner-border-sm me-2" 
+            *ngIf="isSubmitting" 
+            role="status">
+      </span>
+      {{ isSubmitting ? 'Submitting...' : 'Submit Application' }}
+    </button>
+  </div>
+</div>

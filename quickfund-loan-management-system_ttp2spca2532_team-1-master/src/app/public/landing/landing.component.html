@@ -1,0 +1,157 @@
+<header class="bg-white border-bottom sticky-top shadow-sm">
+  <div class="container py-3 d-flex justify-content-between align-items-center">
+    <div class="d-flex align-items-center gap-2">
+      <div class="qf-logo">
+        <strong>QF</strong>
+      </div>
+      <div>
+        <h4 class="m-0 fw-bold text-bg-primary">QuickFund</h4>
+        <small class="text-muted">Smart Loan Management</small>
+      </div>
+    </div>
+    <div class="d-flex gap-2">
+      <button 
+            class="btn btn-bg-secondary btn-outline-secondary text-dark"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#authOffcanvas"
+            (click)="openOffcanvas('login')">Sign In</button>
+
+      <button 
+            class="btn btn-bg-primary text-white"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#authOffcanvas"
+            (click)="openOffcanvas('register')">Get Started</button>
+    </div>
+  </div>
+</header>
+
+
+<div class="container-fluid container-color">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-9">
+      <!-- Hero Section -->
+      <section class="py-5 text-center">
+        <div class="container">
+          <span class="badge  bg-primary-subtle text-primary-emphasis fw-normal mb-4">
+            <i class="bi bi-lightning me-1"></i>
+            Trusted by 50,000+ customers
+          </span>
+
+          <h1 class="display-4 heading-gradient fw-bold">The Future of<br>Smart Lending</h1>
+          <p class="lead text-muted my-5">
+            Experience seamless loan management with AI-powered approvals, real-time tracking, and personalized financial insights. Get the funding you need, when you need it.
+          </p>
+
+          <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
+            <button class="btn btn-bg-primary text-white btn-md" data-bs-toggle="offcanvas" data-bs-target="#authOffcanvas"(click)="openOffcanvas('register')">
+              Start Your Application <i class="bi bi-arrow-right ms-2"></i>
+            </button>
+            <button class="btn btn-bg-secondary btn-outline-secondary text-dark" data-bs-toggle="offcanvas" data-bs-target="#authOffcanvas"(click)="openOffcanvas('login')">
+              Sign In to Dashboard
+            </button>
+          </div>
+
+          <div class="row mt-5">
+            <div class="col-md-3 mb-3" *ngFor="let stat of stats">
+              <h3 class="text-bg-primary display-6 fw-bold">{{ stat.value }}</h3>
+              <p class="text-muted">{{ stat.label }}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Offcanvas for Login/Register -->
+      <div
+        class="offcanvas offcanvas-end offcanvas-custom"
+        tabindex="-1"
+        id="authOffcanvas"
+        aria-labelledby="authOffcanvasLabel"
+      >
+        <div class="offcanvas-header">
+          <button
+            type="button"
+            class="btn-close text-reset"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="offcanvas-body">
+          <app-login
+            *ngIf="showLogin"
+            (switchToRegister)="switchToRegister()"
+          ></app-login>
+
+          <app-register
+            *ngIf="showRegister"
+            (switchToLogin)="switchToLogin()"
+          ></app-register>
+        </div>
+      </div>
+
+      <!-- Features -->
+      <section class="py-5">
+        <div class="container">
+          <div class="text-center mb-5">
+            <h2 class="fw-bold">Why Choose QuickFund?</h2>
+            <p class="text-muted">We combine cutting-edge technology with personalized service for the best lending experience.</p>
+          </div>
+
+          <div class="row g-4">
+            <div class="col-md-4" *ngFor="let feature of features">
+              <div class="card h-100 border-0">
+                <div class="card-body">
+                  <div class="feature-icon mb-4">
+                    <i class={{feature.icon}} ></i>
+                  </div>
+                  <h5 class="card-title text-start mb-4">{{ feature.title }}</h5>
+                  <p class="card-text text-muted text-start">{{ feature.description }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials -->
+      <section class="py-5">
+        <div class="container">
+          <div class="text-center mb-5">
+            <h2 class="fw-bold">What Our Customers Say</h2>
+            <p class="text-muted">Join thousands of satisfied customers who trust QuickFund</p>
+          </div>
+          <div class="row g-4">
+            <div class="col-md-4" *ngFor="let testimonial of testimonials">
+              <div class="card h-100 border-0">
+                <div class="card-body">
+                  <div class="mb-2 text-warning">
+                    <i *ngFor="let star of [].constructor(testimonial.rating)" class="bi bi-star-fill me-1"></i>
+                  </div>
+                  <p class="fst-italic text-muted">"{{ testimonial.content }}"</p>
+                  <div class="fw-semibold">{{ testimonial.name }}</div>
+                  <small class="text-muted">{{ testimonial.role }}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<section class="py-5 btn-bg-primary text-white text-center">
+  <div class="container">
+    <h2 class="fw-bold mb-3">Ready to Transform Your Financial Future?</h2>
+    <p class=" mb-5 text-light">Join QuickFund today and experience the next generation of loan management. <br> Quick approvals, competitive rates, and expert support.</p>
+    <div class="d-flex flex-column flex-sm-row justify-content-center gap-3 mb-3">
+      <button class="btn btn-light btn-md text-primary" data-bs-toggle="offcanvas" data-bs-target="#authOffcanvas"(click)="openOffcanvas('register')">
+        <i class="bi bi-credit-card me-2"></i>Apply for a Loan
+      </button>
+      <button class="btn btn-outline-light btn-md" data-bs-toggle="offcanvas" data-bs-target="#authOffcanvas" (click)="openOffcanvas('login')">
+        <i class="bi bi-people me-2"></i> Access Your Account
+      </button>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>
+
