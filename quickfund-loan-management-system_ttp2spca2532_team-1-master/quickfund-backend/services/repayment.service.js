@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 import Loan from "../models/Loan.js";
 import Repayment from "../models/Repayment.js";
+import User from "../models/User.js";
+import transporter from "../config/mailConfig.js";
 
 const toId = (id) => new mongoose.Types.ObjectId(id);
 
@@ -59,6 +61,33 @@ export async function createRepaymentForLoan({ user, loanId, amount }) {
   if (newTotalPaid >= Number(loan.amount) - 1e-6) {
     loan.status = "Closed";
     await loan.save();
+  }
+
+  // Fire-and-forget email notification to the borrower
+  try {
+    const borrower = await User.findById(loan.userId).lean();
+    if (borrower?.email) {
+      const remaining = Math.max(Number(loan.amount) - newTotalPaid, 0);
+      const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: borrower.email,
+        subject: "Repayment received",
+        text: `Hello ${borrower.name || "Customer"},\n\nWe received your repayment of ₹${amountNum.toFixed(
+          2
+        )} for your loan (purpose: ${loan.purpose || "N/A"}).\n\n` +
+          `Total paid so far: ₹${newTotalPaid.toFixed(2)}. Remaining balance: ₹${remaining.toFixed(
+            2
+          )}.` +
+          (loan.status === "Closed"
+            ? "\n\nYour loan is now fully paid and has been closed."
+            : "") +
+          "\n\nThank you for choosing QuickFund. Make sure u pay the amount on time.",
+      };
+      // Do not block the API on email errors
+      await transporter.sendMail(mailOptions);
+    }
+  } catch (emailErr) {
+    console.error("Failed to send repayment email:", emailErr);
   }
 
   return repayment;
