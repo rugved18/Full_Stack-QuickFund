@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { LoanApplicationService } from "../../../../services/loan-application.service";
-import { LoanApplication } from "../../../../interfaces/loan-application.interface";
+import { LoanApplication } from "../../../../modals/loan-application.interface";
 import {
   LOAN_PURPOSES,
   LOAN_DURATIONS,

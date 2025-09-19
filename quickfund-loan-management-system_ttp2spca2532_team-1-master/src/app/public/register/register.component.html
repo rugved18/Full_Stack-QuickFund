@@ -16,7 +16,8 @@
           />
         </div>
         <div *ngIf="registerForm.get('name')?.touched && registerForm.get('name')?.invalid" class="text-danger mt-1 small">
-          Valid Name is required.
+          <small *ngIf="registerForm.controls['name'].errors?.['required']">Name is required.</small>
+          <small *ngIf="registerForm.controls['name'].errors?.['invalidName']">Name can only contain letters and spaces.</small>
         </div>
       </div>
       <div class="mb-2">
@@ -30,7 +31,8 @@
           />
         </div>
         <div *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid" class="text-danger mt-1 small">
-          Valid email is required.
+          <small *ngIf="registerForm.controls['email'].errors?.['required']">Email is required.</small>
+          <small *ngIf="registerForm.controls['email'].errors?.['invalidEmail']">Please enter a valid email address.</small>
         </div>
       </div>
   
@@ -45,7 +47,8 @@
           />
         </div>
         <div *ngIf="registerForm.get('phone')?.touched && registerForm.get('phone')?.invalid" class="text-danger mt-1 small">
-          Valid Phone Number is required.
+          <small *ngIf="registerForm.controls['phone'].errors?.['required']">Phone number is required.</small>
+          <small *ngIf="registerForm.controls['phone'].errors?.['invalidPhone']">Please enter a valid 10-digit Indian phone number.</small>
         </div>
       </div>
   

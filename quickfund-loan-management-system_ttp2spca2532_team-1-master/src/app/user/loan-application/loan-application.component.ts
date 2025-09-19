@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { LoanApplicationService } from '../../services/loan-application.service';
-import { Step, PageType } from '../../interfaces/loan-application.interface';
+import { Step, PageType } from '../../modals/loan-application.interface';
 import { ApplicationSubmittedComponent } from './components/application-submitted/application-submitted.component';
 import { ReviewApplicationComponent } from './components/review-application/review-application.component';
 import { LoanDetailsAndDocumentsComponent } from './components/loan-details-and-documents/loan-details-and-documents.component';

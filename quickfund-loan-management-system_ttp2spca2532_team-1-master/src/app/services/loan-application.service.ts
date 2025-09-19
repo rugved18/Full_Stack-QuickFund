@@ -3,7 +3,7 @@ import {
   LoanApplication,
   PersonalInfo,
   PageType,
-} from "../interfaces/loan-application.interface";
+} from "../modals/loan-application.interface";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { tap, map } from "rxjs/operators";
 import { Observable } from "rxjs";

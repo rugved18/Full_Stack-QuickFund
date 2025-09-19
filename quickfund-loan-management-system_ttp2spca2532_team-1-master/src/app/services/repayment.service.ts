@@ -27,11 +27,6 @@ export class RepaymentService {
     });
   }
 
-  // Loan-specific repayments
-  getRepaymentsByLoan(loanId: string | number): Observable<RepaymentRecord[]> {
-    return this.http.get<RepaymentRecord[]>(`${this.baseUrl}/loans/${loanId}/repayments`);
-  }
-
   // Aggregated summary compatible with component needs
   getUserLoanSummary(userId: string): Observable<{ loans: LoanRecord[]; repayments: RepaymentRecord[] }>{
     return this.http.get<{ loans: LoanRecord[]; repayments: RepaymentRecord[] }>(`${this.baseUrl}/users/loan-summary`);

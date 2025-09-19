@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../modals/user';
+import { CustomValidators } from '../../validators/form.validators';
 
 @Component({
   selector: 'app-register',
@@ -23,9 +24,9 @@ export class RegisterComponent {
 
   constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) {
     this.registerForm = this.fb.group({
-      name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      phone: ['', Validators.required],
+      name: ['', [Validators.required, CustomValidators.nameValidator]],
+      email: ['', [Validators.required, CustomValidators.emailValidator]],
+      phone: ['', [Validators.required, CustomValidators.indianPhoneValidator]],
       password: ['', [Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&]).{8,16}$/)]],
       confirmPassword: ['', Validators.required]
     });

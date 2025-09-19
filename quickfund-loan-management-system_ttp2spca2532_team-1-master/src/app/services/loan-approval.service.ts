@@ -33,7 +33,7 @@ export class LoanApprovalService {
   approveApplication(applicationId: string): void {
     const applications = this.applicationsSubject.value;
     const updatedApplications = applications.map(app => 
-      app.id === applicationId ? { ...app, status: 'approved' as const } : app
+      app.id === applicationId ? { ...app, status: 'active' as const } : app
     );
     this.applicationsSubject.next(updatedApplications);
   }
@@ -55,13 +55,13 @@ export class LoanApprovalService {
     return this.applicationsSubject.value.filter(app => app.status === status);
   }
 
-  getApplicationsCount(): { pending: number; approved: number; rejected: number; active: number } {
+  getApplicationsCount(): { pending: number; active: number; rejected: number; closed: number } {
     const applications = this.applicationsSubject.value;
     return {
       pending: applications.filter(app => app.status === 'pending').length,
-      approved: applications.filter(app => app.status === 'approved').length,
+      active: applications.filter(app => app.status === 'active').length,
       rejected: applications.filter(app => app.status === 'rejected').length,
-      active: applications.filter(app => app.status === 'active').length
+      closed: applications.filter(app => app.status === 'closed').length
     };
   }
 }

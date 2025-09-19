@@ -17,13 +17,6 @@ export class UserNavbarComponent {
   username: string | null = null;
    constructor(@Inject(PLATFORM_ID) private platformId: Object, private router: Router, private authService: AuthService) {}
 
-  // ngOnInit(): void {
-  //   if (isPlatformBrowser(this.platformId)) { 
-  //     username = this.authService.user.name;
-  //     this.username = userString ? JSON.parse(userString).name : null;
-  //   }
-  // }
-
   goToProfile() {
     this.router.navigate(["/user/profile"]);
   }

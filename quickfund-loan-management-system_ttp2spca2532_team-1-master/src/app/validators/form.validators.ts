@@ -63,4 +63,35 @@ export class CustomValidators {
     
     return null;
   };
+
+  static emailValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+    if (!control.value) return null;
+    
+    // Strict email regex that requires proper format
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailPattern.test(control.value)) {
+      return { invalidEmail: true };
+    }
+    
+    // Additional checks for common invalid patterns
+    const value = control.value.toLowerCase();
+    
+    // Check for consecutive dots
+    if (value.includes('..')) {
+      return { invalidEmail: true };
+    }
+    
+    // Check for invalid characters in local part
+    if (!/^[a-zA-Z0-9._%+-]+$/.test(value.split('@')[0])) {
+      return { invalidEmail: true };
+    }
+    
+    // Check for invalid characters in domain part
+    const domain = value.split('@')[1];
+    if (domain && !/^[a-zA-Z0-9.-]+$/.test(domain)) {
+      return { invalidEmail: true };
+    }
+    
+    return null;
+  };
 }
